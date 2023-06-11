@@ -2,12 +2,21 @@
 	import { onMount } from "svelte"
 	import logo from "$lib/assets/images/logo-universal.png";
 	import { GetAccounts, ResetAllAccounts } from "$lib/wailsjs/go/main/App.js";
+	import { CALLSIGN, FACTION, TOKEN } from '../store.js';
+    import { goto } from "$app/navigation";
 
 	let accounts = [];
 
 	onMount(async () => {
 		GetAccounts().then((result) => (accounts = result));
 	});
+
+	function login(account) {
+		CALLSIGN.update(c => c = account.callsign);
+		FACTION.update(f => f = account.faction);
+		TOKEN.update(t => t = account.token);
+		goto("/home", true);
+	}
 
 	function reset() {
 		ResetAllAccounts()
@@ -21,7 +30,7 @@
 	{#if accounts != null && accounts.length > 0}
 		<div class="accounts-list">
 			{#each accounts as account}
-				<div class="account">
+				<div class="account" on:click={login(account)}>
 					<h3>{account.callsign}</h3>
 					<h5>{account.faction}</h5>
 					<p>{account.token}</p>
@@ -58,9 +67,14 @@
 	}
 
 	.account {
-		background-color: rgba(0,0,0,10);
+		background-color: rgba(0,0,0,0.3);
 		border-radius: 10px;
 		width: 10%;
+	}
+
+	.account:hover {
+		box-shadow: rgba(0,0,0,0.3) 0px 0px 3px 3px;
+		cursor: pointer;
 	}
 
 	.reset-button {
