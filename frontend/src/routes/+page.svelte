@@ -32,7 +32,7 @@
 			{#each accounts as account}
 				<div class="account" on:click={login(account)}>
 					<h3>{account.callsign}</h3>
-					<h5>{account.faction}</h5>
+					<h5>{account.faction.name}</h5>
 					<p>{account.token}</p>
 				</div>
 			{/each}
@@ -70,6 +70,9 @@
 		background-color: rgba(0,0,0,0.3);
 		border-radius: 10px;
 		width: 10%;
+		padding: 10px 30px;
+		margin: 0;
+		text-align: center;
 	}
 
 	.account:hover {

@@ -29,7 +29,7 @@
 			<select bind:value={chosenFaction}>
 				{#each factionList as faction}
 				<option value={faction}>
-					{faction}
+					{faction.name}
 				</option>
 				{/each}
 			</select>

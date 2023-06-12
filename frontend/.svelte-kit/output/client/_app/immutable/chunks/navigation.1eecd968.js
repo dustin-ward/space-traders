@@ -1,0 +1,1 @@
+import{j as o}from"./singletons.4c058ed7.js";function e(t,n){return window.go.main.App.CreateAccount(t,n)}function i(){return window.go.main.App.GetAccounts()}function a(){return window.go.main.App.GetFactions()}function s(){return window.go.main.App.ResetAllAccounts()}const u=o("goto");export{e as C,i as G,s as R,a,u as g};
