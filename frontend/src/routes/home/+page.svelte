@@ -5,7 +5,7 @@
 <main>
 	<nav>
 		<h1>{$CALLSIGN}</h1>
-		<h2>{$FACTION.name}</h2>
+		<h2>{$FACTION}</h2>
 		<p>{$FACTION.description}</p>
 		<a href="/">Log Out</a>
 	</nav>

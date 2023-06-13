@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from "svelte"
 	import { goto } from "$app/navigation"
-	import { GetFactions, CreateAccount } from "$lib/wailsjs/go/main/App.js";
+	import { GetFactions, CreateAccount } from "$lib/wailsjs/go/app/App.js";
 
 	let callsign;
 	let chosenFaction;
@@ -28,7 +28,7 @@
 		<form on:submit|preventDefault={handleSubmit}>
 			<select bind:value={chosenFaction}>
 				{#each factionList as faction}
-				<option value={faction}>
+				<option value={faction.symbol}>
 					{faction.name}
 				</option>
 				{/each}

@@ -1,27 +1,28 @@
 package factions
 
 import (
-	"net/http"
-	"io"
 	"encoding/json"
+	"io"
+	"net/http"
 
-	"github.com/dustin-ward/space-traders/internal/app"
+	"github.com/dustin-ward/space-traders/internal/util"
 )
 
 type Faction struct {
-	Symbol string `json:"symbol"`
-	Name string	`json:"name"`
-	Description string `json:"description"`
-	Headquarters string	`json:"headquarters"`
+	Symbol       string `json:"symbol"`
+	Name         string `json:"name"`
+	Description  string `json:"description"`
+	Headquarters string `json:"headquarters"`
 	// TODO: Implement traits
 	// Traits []Traits
 	IsRecruiting bool `json:"isRecruiting"`
 }
-func (a *app.App) GetFactions() ([]Faction, error) {
-	factions := make([]Faction,0)
-	
+
+func GetFactions() ([]Faction, error) {
+	factions := make([]Faction, 0)
+
 	// TODO: Deal with pagination when #factions > 20
-	resp, err := http.Get(app.API_LINK + "/factions?limit=20")
+	resp, err := http.Get(util.API_LINK + "/factions?limit=20")
 	if err != nil {
 		return nil, err
 	}
@@ -42,9 +43,9 @@ func (a *app.App) GetFactions() ([]Faction, error) {
 	for _, f := range data_arr {
 		faction := f.(map[string]any)
 		factions = append(factions, Faction{
-			Symbol: faction["symbol"].(string),
-			Name: faction["name"].(string),
-			Description: faction["description"].(string),
+			Symbol:       faction["symbol"].(string),
+			Name:         faction["name"].(string),
+			Description:  faction["description"].(string),
 			Headquarters: faction["headquarters"].(string),
 			IsRecruiting: faction["isRecruiting"].(bool),
 		})

@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from "svelte"
 	import logo from "$lib/assets/images/logo-universal.png";
-	import { GetAccounts, ResetAllAccounts } from "$lib/wailsjs/go/main/App.js";
+	import { GetAccounts, ResetAllAccounts } from "$lib/wailsjs/go/app/App.js";
 	import { CALLSIGN, FACTION, TOKEN } from '../store.js';
     import { goto } from "$app/navigation";
 

@@ -8,6 +8,8 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 
 	"github.com/dustin-ward/space-traders/internal/app"
+	// _ "github.com/dustin-ward/space-traders/internal/accounts"
+	// _ "github.com/dustin-ward/space-traders/internal/factions"
 )
 
 // 'wails dev' should properly launch vite to serve the site
@@ -34,7 +36,7 @@ func main() {
 			Assets: assets,
 		},
 		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
-		OnStartup:        app.startup,
+		OnStartup:        st_app.Startup,
 		Bind: []interface{}{
 			st_app,
 		},

@@ -2,32 +2,45 @@ package accounts
 
 import (
 	"log"
-
-	"github.com/dustin-ward/space-traders/internal/app"
-	"github.com/dustin-ward/space-traders/internal/factions"
 )
 
 type Account struct {
 	Callsign string `json:"callsign"`
-	Faction factions.Faction `json:"faction"`
-	Token string `json:"token"`
+	Faction  string `json:"faction"`
+	Token    string `json:"token"`
 }
 
-func (a *app.App) GetAccounts() ([]Account, error) {
-	return a.accounts, nil
+var accounts []Account
+
+func GetAccounts() ([]Account, error) {
+	err := readAccountsFromFile()
+	if err != nil {
+		log.Fatal("readAccountsFromFile:", err)
+	}
+	log.Println(accounts)
+	return accounts, nil
 }
 
-func (a *app.App) CreateAccount(callsign string, faction factions.Faction) error {
-	log.Println("CREATE ACCOUNT:", callsign, faction.Symbol)
-	a.accounts = append(a.accounts, Account{
+func CreateAccount(callsign, faction string) error {
+	accounts = append(accounts, Account{
 		Callsign: callsign,
-		Faction: faction,
-		Token: "TESTTOKEN",
+		Faction:  faction,
+		Token:    "TESTTOKEN",
 	})
+
+	if err := writeAccountsToFile(); err != nil {
+		log.Fatal("CreateAccount:", err)
+	}
+
+	log.Println("CREATED ACCOUNT:", callsign, faction)
 	return nil
 }
 
-func (a *app.App) ResetAllAccounts() {
+func ResetAllAccounts() {
 	log.Println("Resetting all accounts...")
-	a.accounts = make([]Account,0)
+	accounts = make([]Account, 0)
+
+	if err := writeAccountsToFile(); err != nil {
+		log.Fatal("ResetAllAccounts:", err)
+	}
 }

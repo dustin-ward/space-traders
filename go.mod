@@ -1,4 +1,4 @@
-module changeme
+module github.com/dustin-ward/space-traders
 
 go 1.18
 

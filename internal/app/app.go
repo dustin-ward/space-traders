@@ -3,16 +3,11 @@ package app
 import (
 	"context"
 	"fmt"
-
-	"github.com/dustin-ward/space-traders/internal/accounts"
 )
-
-const API_LINK = "https://api.spacetraders.io/v2"
 
 // App struct
 type App struct {
-	ctx context.Context
-	accounts []accounts.Account
+	ctx      context.Context
 }
 
 // NewApp creates a new App application struct
@@ -22,7 +17,7 @@ func NewApp() *App {
 
 // startup is called when the app starts. The context is saved
 // so we can call the runtime methods
-func (a *App) startup(ctx context.Context) {
+func (a *App) Startup(ctx context.Context) {
 	a.ctx = ctx
 }
 
