@@ -1,0 +1,1 @@
+function o(t,n){return window.go.app.App.CreateAccount(t,n)}function c(){return window.go.app.App.GetAccounts()}function p(t){return window.go.app.App.GetFaction(t)}function e(){return window.go.app.App.GetFactions()}function a(){return window.go.app.App.ResetAllAccounts()}export{o as C,c as G,a as R,p as a,e as b};

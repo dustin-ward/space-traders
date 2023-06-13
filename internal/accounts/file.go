@@ -2,7 +2,7 @@ package accounts
 
 import (
 	"encoding/json"
-	"fmt"
+	// "fmt"
 	"io/ioutil"
 )
 
@@ -14,11 +14,11 @@ func readAccountsFromFile() error {
 		return err
 	}
 
-	if string(data) == "[]" {
-		fmt.Println("TEST")
-		accounts = make([]Account, 0)
-		return nil
-	}
+	// if string(data) == "[]" {
+	// 	fmt.Println("TEST")
+	// 	accounts = make([]Account, 0)
+	// 	return nil
+	// }
 
 	err = json.Unmarshal(data, &accounts)
 	if err != nil {

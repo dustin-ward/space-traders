@@ -7,6 +7,8 @@ export function CreateAccount(arg1:string,arg2:string):Promise<void>;
 
 export function GetAccounts():Promise<Array<accounts.Account>>;
 
+export function GetFaction(arg1:string):Promise<factions.Faction>;
+
 export function GetFactions():Promise<Array<factions.Faction>>;
 
 export function Greet(arg1:string):Promise<string>;

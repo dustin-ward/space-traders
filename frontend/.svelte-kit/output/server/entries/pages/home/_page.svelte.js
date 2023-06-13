@@ -8,16 +8,16 @@ const css = {
   map: null
 };
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let $$unsubscribe_FACTION;
   let $CALLSIGN, $$unsubscribe_CALLSIGN;
-  let $FACTION, $$unsubscribe_FACTION;
+  $$unsubscribe_FACTION = subscribe(FACTION, (value) => value);
   $$unsubscribe_CALLSIGN = subscribe(CALLSIGN, (value) => $CALLSIGN = value);
-  $$unsubscribe_FACTION = subscribe(FACTION, (value) => $FACTION = value);
   $$result.css.add(css);
-  $$unsubscribe_CALLSIGN();
   $$unsubscribe_FACTION();
+  $$unsubscribe_CALLSIGN();
   return `<main><nav class="svelte-n445rk"><h1 class="svelte-n445rk">${escape($CALLSIGN)}</h1>
-		<h2 class="svelte-n445rk">${escape($FACTION.name)}</h2>
-		<p class="svelte-n445rk">${escape($FACTION.description)}</p>
+		<h2 class="svelte-n445rk">${`loading...`}</h2>
+		<p class="svelte-n445rk">${`loading...`}</p>
 		<a href="/">Log Out</a></nav>
 	<div></div>
 </main>`;

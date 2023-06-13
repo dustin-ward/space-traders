@@ -12,7 +12,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 	<h1>Login Page</h1>
 	${accounts != null && accounts.length > 0 ? `<div class="accounts-list svelte-1mxrnvh">${each(accounts, (account) => {
     return `<div class="account svelte-1mxrnvh"><h3>${escape(account.callsign)}</h3>
-					<h5>${escape(account.faction.name)}</h5>
+					<h5>${escape(account.faction)}</h5>
 					<p>${escape(account.token)}</p>
 				</div>`;
   })}</div>

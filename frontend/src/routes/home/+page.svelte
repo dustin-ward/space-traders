@@ -1,12 +1,36 @@
 <script>
+	import { onMount } from "svelte"
 	import { CALLSIGN, FACTION, TOKEN } from '../../store.js';
+	import { GetFaction } from '$lib/wailsjs/go/app/App.js';
+	
+	let faction;
+
+	onMount(async () => {
+		GetFaction($FACTION).then(result => {
+			faction = result;
+			console.log(faction);
+		});
+	});
+
 </script>
 
 <main>
 	<nav>
 		<h1>{$CALLSIGN}</h1>
-		<h2>{$FACTION}</h2>
-		<p>{$FACTION.description}</p>
+		<h2>
+			{#if faction}
+				{faction.name}
+			{:else}
+				loading...
+			{/if}
+		</h2>
+		<p>
+			{#if faction}
+				{faction.description}
+			{:else}
+				loading...
+			{/if}
+		</p>
 		<a href="/">Log Out</a>
 	</nav>
 	<div>

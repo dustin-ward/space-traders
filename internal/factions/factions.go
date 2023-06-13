@@ -2,6 +2,7 @@ package factions
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 
@@ -52,4 +53,39 @@ func GetFactions() ([]Faction, error) {
 	}
 
 	return factions, nil
+}
+
+func GetFaction(symbol string) (Faction, error) {
+	var faction Faction
+
+	resp, err := http.Get(util.API_LINK + "/factions/" + symbol)
+	if err != nil {
+		return faction, err
+	}
+	defer resp.Body.Close()
+	
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return faction, err
+	}
+
+	// Disgusting generic type conversion...
+	// Please tell me how to do this better
+	var resp_json any
+	if err = json.Unmarshal(body, &resp_json); err != nil {
+		return faction, err
+	}
+	data, ok := resp_json.(map[string]any)["data"]
+	if !ok {
+		return faction, fmt.Errorf("error casting json")
+	}
+	re_json, err := json.Marshal(data)
+	if err != nil {
+		return faction, err
+	}
+	if err = json.Unmarshal(re_json, &faction); err != nil {
+		return faction, nil
+	}
+
+	return faction, nil
 }
