@@ -8,7 +8,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 		<input${add_attribute("value", callsign, 0)}>
 		<h3>Faction:</h3>
 		<form><select>${each(factionList, (faction) => {
-    return `<option${add_attribute("value", faction, 0)}>${escape(faction)}
+    return `<option${add_attribute("value", faction, 0)}>${escape(faction.name)}
 				</option>`;
   })}</select>
 			<button ${"disabled"} type="submit">Submit
