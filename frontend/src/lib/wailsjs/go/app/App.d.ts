@@ -3,7 +3,7 @@
 import {accounts} from '../models';
 import {factions} from '../models';
 
-export function CreateAccount(arg1:string,arg2:string):Promise<void>;
+export function CreateAccount(arg1:string,arg2:string):Promise<string>;
 
 export function GetAccounts():Promise<Array<accounts.Account>>;
 

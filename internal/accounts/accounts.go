@@ -1,7 +1,11 @@
 package accounts
 
 import (
+	"encoding/json"
+	"fmt"
 	"log"
+
+	"github.com/dustin-ward/space-traders/internal/util"
 )
 
 type Account struct {
@@ -15,32 +19,57 @@ var accounts []Account
 func GetAccounts() ([]Account, error) {
 	err := readAccountsFromFile()
 	if err != nil {
-		log.Fatal("readAccountsFromFile:", err)
+		log.Println("GetAccounts:", err)
+		return []Account{}, fmt.Errorf("GetAccounts: %v", err)
 	}
-	log.Println(accounts)
 	return accounts, nil
 }
 
-func CreateAccount(callsign, faction string) error {
+func CreateAccount(callsign, faction string) (string, error) {
+	body := fmt.Sprintf(`{"symbol":"%s","faction":"%s"}`,
+		callsign,
+		faction,
+	)
+
+	// TODO: Proper error handling for bad request, duplicate name, etc
+	raw_json, err := util.PostRequest("/register", body, "")
+	if err != nil {
+		log.Println("CreateAccount:", err)
+		return "", fmt.Errorf("CreateAccount: %v", err)
+	}
+	var data any
+	if err = json.Unmarshal(raw_json, &data); err != nil {
+		log.Println("CreateAccount:", err)
+		return "", fmt.Errorf("CreateAccount: %v", err)
+	}
+	token, ok := data.(map[string]any)["data"].(map[string]any)["token"].(string)
+	if !ok {
+		log.Println("CreateAccount:", "error casting json")
+		return "", fmt.Errorf("CreateAccount: %v", err)
+	}
+
 	accounts = append(accounts, Account{
 		Callsign: callsign,
 		Faction:  faction,
-		Token:    "TESTTOKEN",
+		Token:    token,
 	})
 
 	if err := writeAccountsToFile(); err != nil {
-		log.Fatal("CreateAccount:", err)
+		log.Println("CreateAccount:", err)
+		return token, fmt.Errorf("CreateAccount: %v", err)
 	}
 
-	log.Println("CREATED ACCOUNT:", callsign, faction)
-	return nil
+	return token, nil
 }
 
-func ResetAllAccounts() {
+func ResetAllAccounts() error {
 	log.Println("Resetting all accounts...")
 	accounts = make([]Account, 0)
 
 	if err := writeAccountsToFile(); err != nil {
-		log.Fatal("ResetAllAccounts:", err)
+		log.Println("ResetAllAccounts:", err)
+		return fmt.Errorf("ResetAllAcounts: %v", err)
 	}
+
+	return nil
 }

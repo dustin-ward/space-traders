@@ -3,5 +3,10 @@
   "callsign": "SHRUB",
   "faction": "QUANTUM",
   "token": "TESTTOKEN"
+ },
+ {
+  "callsign": "TESTESTSET2234",
+  "faction": "COSMIC",
+  "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGlmaWVyIjoiVEVTVEVTVFNFVDIyMzQiLCJ2ZXJzaW9uIjoidjIiLCJyZXNldF9kYXRlIjoiMjAyMy0wNi0xMCIsImlhdCI6MTY4NjYyNjQ4NSwic3ViIjoiYWdlbnQtdG9rZW4ifQ.ocpLsmAt_2zX88_j1RJ19B68_NdAK1TpQmB0c4thsyXBDJ-ob0z9ZuUm3kJ3olehPNc5TIHjmyJCmMO022u5Nclo2QLeOLEi66XsNv66QYg-TqdhjeTeL2Y-YE41-J-sqc-gj-ByE3w6fW-KoDyzdGZxPsZPFao8KAywuxok2Dm9IjwpK7Bu6jMFjqOA8TFTcp8PP6vkNOZCqfTma1_f-ifD19DVrigOOhjfa3FFWDwR5i4hLCgHycyMH780i-lJ_mx0xCuk_qoEhfKL1EMGbkWxLuxLV-emwopGXIhjQR_fyiIEUbeX1eJLCY6yZfTynEYJHXTrd-2a_au8ncJvmA"
  }
 ]
