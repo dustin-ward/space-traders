@@ -16,6 +16,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 				</div>`;
   })}</div>
 		<a href="/newAccount" class="create-button red-button svelte-2relrm">Create New Account</a>` : `<p>No Accounts available...</p>
+		<br>
 		<a href="/newAccount" class="create-button red-button svelte-2relrm">Create one!</a>`}
 	<button class="reset-button svelte-2relrm">RESET</button>
 </main>`;
