@@ -2,13 +2,16 @@
 	import { onMount } from "svelte"
 	import { CALLSIGN, FACTION, TOKEN } from '../../store.js';
 	import { GetFaction } from '$lib/wailsjs/go/app/App.js';
-	
+
 	let faction;
+	let callsign;
+	let token;
 
 	onMount(async () => {
+		callsign = $CALLSIGN
+		token = $TOKEN
 		GetFaction($FACTION).then(result => {
 			faction = result;
-			console.log(faction);
 		});
 	});
 
@@ -16,14 +19,14 @@
 
 <main>
 	<nav>
-		<h1>{$CALLSIGN}</h1>
-		<h2>
+		<h1>{callsign}</h1>
+		<h5>
 			{#if faction}
 				{faction.name}
 			{:else}
 				loading...
 			{/if}
-		</h2>
+		</h5>
 		<p>
 			{#if faction}
 				{faction.description}
@@ -31,7 +34,7 @@
 				loading...
 			{/if}
 		</p>
-		<a href="/">Log Out</a>
+		<a href="/" class="log-out red-button">Log Out</a>
 	</nav>
 	<div>
 	</div>
@@ -39,21 +42,32 @@
 
 <style>
 	nav {
-		padding: 10px 10px;
-		margin: 0;
-		height: 100vh;
+		position: fixed;
+		height: 100%;
 		width: 250px;
-		background-color: rgba(0,0,0,0.3);
-		box-sizing: border-box;
+		background-color: var(--st_fg);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 	nav p {
 		text-align: left;
+		padding: 15px;
 	}
-	h1 {
-		margin: 0 0 10px 0;
+	nav h1 {
+		padding: 10px;
+		margin: 0;
+		padding-bottom: 5px;
 	}
-	h2 {
-		margin: 0 0 10px 0;
+	nav h5 {
+		margin: 0;
+		color: var(--st_text_secondary);
 	}
-	
+
+	.log-out {
+		width: 80%;
+		margin-top: auto;
+		margin-bottom: 5%;
+		padding: 5px;
+	}
 </style>

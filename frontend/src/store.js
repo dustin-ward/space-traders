@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
 
-export const CALLSIGN = writable(0);
-export const FACTION = writable(0);
-export const TOKEN = writable(0);
+export const CALLSIGN = writable("NULL_CALLSIGN");
+export const FACTION = writable("NULL_FACTION");
+export const TOKEN = writable("NULL_TOKEN");

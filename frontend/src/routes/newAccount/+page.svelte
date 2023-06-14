@@ -19,7 +19,7 @@
 </script>
 
 <main>
-	<a href="/">Back</a>
+	<a href="/" class="back-button red-button">Back</a>
 	<h1>Create Account</h1>
 	<div class="create-form">
 		<h3>Callsign:</h3>
@@ -33,7 +33,7 @@
 				</option>
 				{/each}
 			</select>
-			<button disabled={!callsign || !chosenFaction} type=submit>
+			<button disabled={!callsign || !chosenFaction} type=submit class="red-button">
 				Submit
 			</button>
 		</form>
@@ -41,4 +41,11 @@
 </main>
 
 <style>
+	.back-button {
+		display: block;
+		position: absolute;
+		top: 2%;
+		left: 2%;
+		padding: 5px;
+	}
 </style>

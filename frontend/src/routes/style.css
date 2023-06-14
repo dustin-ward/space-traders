@@ -1,15 +1,23 @@
+:root {
+	--st_bg: rgb(27, 38, 54);
+	--st_fg: rgb(15, 26, 42);
+	--st_accent: rgb(255, 10, 10);
+	--st_text: white;
+	--st_text_secondary: darkgrey;
+}
+
 html {
     margin: 0;
 	padding: 0;
-    background-color: rgba(27, 38, 54, 1);
+    background-color: var(--st_bg);
     text-align: center;
-    color: white;
+    color: var(--st_text);
 }
 
 body {
     margin: 0;
 	padding: 0;
-    color: white;
+    color: var(--st_text);
     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -29,6 +37,18 @@ body {
 }
 
 a {
-	color: rgb(255, 10, 10);
+	color: var(--st_accent);
 	text-decoration: none;
+}
+
+.red-button {
+	background-color: var(--st_accent);
+	color: var(--st_text);
+	border-radius: 8px;
+	font-size: 18px;
+	font-weight: bold;
+}
+.red-button:hover {
+	box-shadow: rgba(0,0,0,0.3) 0px 0px 5px 5px;
+	text-shadow: 0 0 15px var(--st_text);
 }

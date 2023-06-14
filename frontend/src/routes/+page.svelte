@@ -33,15 +33,14 @@
 				<div class="account" on:click={login(account)}>
 					<h3>{account.callsign}</h3>
 					<h5>{account.faction}</h5>
-					<p>{account.token}</p>
 				</div>
 			{/each}
 		</div>
-
-		<a href="/newAccount">Create New Account</a>
+		<a href="/newAccount" class="create-button red-button">Create New Account</a>
 	{:else}
 		<p>No Accounts available...</p>
-		<a href="/newAccount">Create one!</a>
+		<br>
+		<a href="/newAccount" class="create-button red-button">Create one!</a>
 	{/if}
 	<button class="reset-button" on:click={reset}>RESET</button>
 </main>
@@ -64,10 +63,11 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		gap: 10px 30px;
+		margin: 10%;
 	}
 
 	.account {
-		background-color: rgba(0,0,0,0.3);
+		background-color: var(--st_fg);
 		border-radius: 10px;
 		width: 10%;
 		padding: 10px 30px;
@@ -77,10 +77,17 @@
 
 	.account:hover {
 		box-shadow: rgba(0,0,0,0.3) 0px 0px 3px 3px;
+		text-shadow: 0 0 10px var(--st_text);
 		cursor: pointer;
 	}
 
 	.reset-button {
 		display: block;
+		position: absolute;
+		bottom: 0;
+	}
+
+	.create-button {
+		padding: 15px;
 	}
 </style>
