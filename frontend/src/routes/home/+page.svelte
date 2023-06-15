@@ -1,5 +1,9 @@
 <script>
 	import { onMount } from "svelte"
+	import { Alert, Spinner, Span } from "flowbite-svelte"
+	import { Sidebar, SidebarGroup, SidebarItem, SidebarWrapper, SidebarDropdownItem, SidebarDropdownWrapper } from "flowbite-svelte";
+	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Avatar, Dropdown, DropdownItem, DropdownHeader, DropdownDivider } from "flowbite-svelte";
+	import { XCircle, CalendarDays, ChartBar, ClipboardDocumentList, ShoppingCart, GlobeAlt, QuestionMarkCircle } from "svelte-heros-v2";
 	import { CALLSIGN, FACTION, TOKEN } from '../../store.js';
 	import { GetFaction } from '$lib/wailsjs/go/app/App.js';
 
@@ -17,80 +21,72 @@
 
 </script>
 
-<main>
-	<nav class="topbar">
-		<h1>SpaceTraders</h1>
-		<a href="#" class="account-info">A</a>
-	</nav>
-	<nav class="sidebar">
-		<h1>{callsign}</h1>
-		<h5>
-			{#if faction}
-				{faction.name}
-			{:else}
-				loading...
-			{/if}
-		</h5>
-		<p>
-			{#if faction}
-				{faction.description}
-			{:else}
-				loading...
-			{/if}
-		</p>
-		<a href="/" class="log-out red-button">Log Out</a>
-	</nav>
+<div class="bg-[url('./lib/assets/images/system-temp.png')] bg-right">
 	<div>
+		<Navbar let:toggle>
+			<NavBrand class="ml-4">
+				<GlobeAlt size="52" color="#34c9eb"/>
+				<Span gradient class="self-center whitespace-nowrap text-xl font-semibold px-4">SpaceTraders</Span>
+			</NavBrand>
+			<div class="flex items-center md:order-2 mr-12">
+				<Avatar id="avatar-menu"/>
+				<NavHamburger on:click={toggle} class1="w-full md:flex md:w-auto md:order-1"/>
+			</div>
+			<Dropdown placement="bottom" triggeredBy="#avatar-menu">
+				<DropdownHeader>
+					{#if callsign}
+						<span class="block text-sm">{callsign}</span>
+						<span class="block truncate text-sm font-medium">{faction.name}</span>
+					{:else}
+						<Spinner/>
+					{/if}
+				</DropdownHeader>
+				<DropdownItem>Dashboard</DropdownItem>
+				<DropdownItem>Settings</DropdownItem>
+				<DropdownItem>Earnings</DropdownItem>
+				<DropdownDivider />
+				<DropdownItem href="/">Log Out</DropdownItem>
+			</Dropdown>
+			<NavUl>
+				<NavLi href="/home">Home</NavLi>
+				<NavLi href="/map" active>System Map</NavLi>
+				<NavLi href="/faction">Faction</NavLi>
+			</NavUl>
+		</Navbar>
 	</div>
-</main>
-
-<style>
-	.topbar {
-		position: relative;
-		/* top: 0; */
-		z-index: 1;
-		display: flex;
-		flex-direction: row;
-		align-content: center;
-		justify-content: center;
-		width: 100%;
-		height: 10vh;
-		background-color: rgb(50,50,50);
-		margin: 0;
-	}
-
-	.sidebar {
-		/* padding-top: 8%; */
-		/* padding-bottom: 5%; */
-		position: fixed;
-		height: 90vh;
-		width: 250px;
-		background-color: var(--st_fg);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-	.sidebar p {
-		text-align: left;
-		padding: 15px;
-	}
-	.sidebar h1 {
-		padding: 10px;
-		padding-bottom: 5px;
-	}
-	.sidebar h5 {
-		margin: 0;
-		color: var(--st_text_secondary);
-	}
-
-	.log-out {
-		width: 80%;
-		margin-top: auto;
-		margin-bottom: 5%;
-		padding: 5px;
-	}
-
-	.account-info {
-		margin-left: auto;
-	}
-</style>
+	<div class="">
+		<Sidebar class="">
+			<SidebarWrapper class="h-screen">
+				<SidebarGroup class="">
+					<SidebarItem label="Temp 1">
+						<svelte:fragment slot="icon">
+							<CalendarDays size="30"/>
+						</svelte:fragment>
+					</SidebarItem>
+					<SidebarItem label="Temp 2">
+						<svelte:fragment slot="icon">
+							<ChartBar size="30"/>
+						</svelte:fragment>
+					</SidebarItem>
+					<SidebarItem label="Temp 3">
+						<svelte:fragment slot="icon">
+							<ClipboardDocumentList size="30"/>
+						</svelte:fragment>
+					</SidebarItem>
+					<SidebarItem label="Temp 4">
+						<svelte:fragment slot="icon">
+							<ShoppingCart size="30"/>
+						</svelte:fragment>
+					</SidebarItem>
+				</SidebarGroup>
+				<SidebarGroup border class="">
+					<SidebarItem label="Help">
+						<svelte:fragment slot="icon">
+							<QuestionMarkCircle size="30"/>
+						</svelte:fragment>
+					</SidebarItem>
+				</SidebarGroup>
+			</SidebarWrapper>
+		</Sidebar>
+	</div>
+</div>
