@@ -1,4 +1,4 @@
-import { c as create_ssr_component, b as compute_rest_props, d as spread, f as escape_object, o as is_void } from "./index2.js";
+import { c as create_ssr_component, b as compute_rest_props, d as spread, h as escape_object, n as is_void } from "./index2.js";
 const Wrapper = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$restProps = compute_rest_props($$props, ["tag", "show", "use"]);
   let { tag = "div" } = $$props;

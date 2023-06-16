@@ -1,4 +1,4 @@
-import { c as create_ssr_component, e as escape, i as add_attribute, n as compute_slots, b as compute_rest_props, d as spread, h as escape_attribute_value, f as escape_object, o as is_void, v as validate_component } from "./index2.js";
+import { c as create_ssr_component, e as escape, j as add_attribute, l as compute_slots, b as compute_rest_props, d as spread, f as escape_attribute_value, h as escape_object, n as is_void, v as validate_component } from "./index2.js";
 import { twMerge } from "tailwind-merge";
 const Placeholder = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { rounded = false } = $$props;
