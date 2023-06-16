@@ -21,7 +21,7 @@
 </script>
 
 <div class="flex h-screen flex-col">
-	<Navbar let:toggle>
+	<Navbar let:toggle class="z-50">
 		<NavBrand class="ml-4" disabled>
 			<GlobeAlt size="52" color="#34c9eb"/>
 			<Span gradient class="self-center whitespace-nowrap text-xl font-semibold px-4">SpaceTraders</Span>
@@ -30,7 +30,7 @@
 			<Avatar id="avatar-menu"/>
 			<NavHamburger on:click={toggle} class1="w-full md:flex md:w-auto md:order-1"/>
 		</div>
-		<Dropdown placement="bottom" triggeredBy="#avatar-menu">
+		<Dropdown placement="bottom" triggeredBy="#avatar-menu" clas="z-50">
 			<DropdownHeader>
 				{#if callsign}
 					<span class="block text-sm">{callsign}</span>

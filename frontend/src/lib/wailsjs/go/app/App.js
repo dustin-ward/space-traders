@@ -10,6 +10,10 @@ export function GetAccounts() {
   return window['go']['app']['App']['GetAccounts']();
 }
 
+export function GetContracts(arg1) {
+  return window['go']['app']['App']['GetContracts'](arg1);
+}
+
 export function GetFaction(arg1) {
   return window['go']['app']['App']['GetFaction'](arg1);
 }
